@@ -2,6 +2,14 @@ import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { useRef, useState } from 'react';
 import profilePhoto from '@/assets/profile-photo.jpg';
 
+const certBadges = [
+  { label: 'SECURITY+', position: 'right', top: '15%' },
+  { label: 'NETWORK+', position: 'left', top: '30%' },
+  { label: 'SPLUNK', position: 'right', top: '45%' },
+  { label: 'AZURE', position: 'left', top: '60%' },
+  { label: 'GOOGLE', position: 'right', top: '75%' },
+];
+
 /**
  * 3D Animated Profile Card with cybersecurity theme
  * Features mouse-tracking 3D tilt effect and floating animation
@@ -47,28 +55,28 @@ export function Hero3DProfile() {
     >
       {/* Floating cyber particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-cyber/60"
+            className="absolute w-1.5 h-1.5 rounded-full bg-cyber/60"
             initial={{ 
               x: Math.random() * 300 - 150,
               y: Math.random() * 400 - 200,
               opacity: 0 
             }}
             animate={{ 
-              y: [null, -20, 20, -20],
-              opacity: [0, 1, 1, 0],
+              y: [null, -15, 15, -15],
+              opacity: [0, 0.8, 0.8, 0],
             }}
             transition={{
-              duration: 4 + Math.random() * 2,
+              duration: 3 + Math.random() * 2,
               repeat: Infinity,
-              delay: i * 0.5,
+              delay: i * 0.4,
               ease: 'easeInOut'
             }}
             style={{
-              left: `${20 + i * 15}%`,
-              top: `${10 + (i % 3) * 30}%`,
+              left: `${10 + i * 12}%`,
+              top: `${5 + (i % 4) * 25}%`,
             }}
           />
         ))}
@@ -145,53 +153,30 @@ export function Hero3DProfile() {
           </div>
         </div>
 
-        {/* Floating data elements */}
-        <motion.div
-          className="absolute -right-4 top-1/4 px-3 py-1.5 rounded bg-background/90 border border-cyber/50 text-xs font-mono text-cyber"
-          style={{ transform: 'translateZ(40px)' }}
-          animate={{
-            y: [0, -5, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
-          SECURITY+
-        </motion.div>
-
-        <motion.div
-          className="absolute -left-4 top-1/2 px-3 py-1.5 rounded bg-background/90 border border-cyber/50 text-xs font-mono text-cyber"
-          style={{ transform: 'translateZ(40px)' }}
-          animate={{
-            y: [0, 5, 0],
-          }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 0.5,
-          }}
-        >
-          SPLUNK
-        </motion.div>
-
-        <motion.div
-          className="absolute -right-2 bottom-1/4 px-3 py-1.5 rounded bg-background/90 border border-cyber/50 text-xs font-mono text-cyber"
-          style={{ transform: 'translateZ(40px)' }}
-          animate={{
-            y: [0, -3, 0],
-          }}
-          transition={{
-            duration: 1.8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-        >
-          NETWORK+
-        </motion.div>
+        {/* Floating certification badges */}
+        {certBadges.map((badge, index) => (
+          <motion.div
+            key={badge.label}
+            className={`absolute px-3 py-1.5 rounded bg-background/90 border border-cyber/50 text-xs font-mono text-cyber whitespace-nowrap ${
+              badge.position === 'right' ? '-right-4' : '-left-4'
+            }`}
+            style={{ 
+              transform: 'translateZ(40px)',
+              top: badge.top,
+            }}
+            animate={{
+              y: [0, badge.position === 'right' ? -5 : 5, 0],
+            }}
+            transition={{
+              duration: 2 + index * 0.3,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: index * 0.2,
+            }}
+          >
+            {badge.label}
+          </motion.div>
+        ))}
       </motion.div>
     </div>
   );
