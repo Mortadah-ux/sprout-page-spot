@@ -1,9 +1,8 @@
 /**
- * Core TypeScript interfaces for Frame Portfolio
- * Based on SPECIFICATION.md data model requirements
+ * Core TypeScript interfaces for SOC Analyst Portfolio
  */
 
-export type ProjectCategory = 'portraits' | 'landscapes' | 'editorial' | 'architecture' | 'documentary';
+export type ProjectCategory = 'threat-hunting' | 'incident-response' | 'siem' | 'malware-analysis' | 'network-security' | 'labs';
 
 export type AspectRatio = 'portrait' | 'landscape' | 'square';
 
@@ -23,29 +22,29 @@ export interface Project {
   coverImage: string;
   images: ProjectImage[];
   description: string;
-  client?: string;
-  camera?: string;
+  tools?: string;
+  platform?: string;
   location?: string;
   slug: string;
 }
 
-export interface PhotographerInfo {
+export interface AnalystInfo {
   name: string;
   tagline: string;
   heroIntroduction: string;
   biography: string;
   approach: string;
-  awards: string[];
-  clients: string[];
+  certifications: string[];
+  skills: string[];
   education: string;
   location: string;
   email: string;
   phone: string;
   availability: string;
   socialLinks: {
-    instagram?: string;
+    github?: string;
     linkedin?: string;
-    behance?: string;
+    tryhackme?: string;
   };
   portraitImage: string;
 }
@@ -53,7 +52,10 @@ export interface PhotographerInfo {
 export interface ContactSubmission {
   name: string;
   email: string;
-  projectType: 'editorial' | 'commercial' | 'personal';
+  inquiryType: 'job-opportunity' | 'collaboration' | 'mentorship' | 'general';
   message: string;
   timestamp: Date;
 }
+
+// Keep backward compatibility alias
+export type PhotographerInfo = AnalystInfo;

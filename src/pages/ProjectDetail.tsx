@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Camera, User } from 'lucide-react';
+import { Calendar, MapPin, Wrench, Globe } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -82,7 +82,7 @@ export default function ProjectDetail() {
               </div>
               <div className="flex items-center gap-2 capitalize">
                 <span>•</span>
-                <span>{project.category}</span>
+                <span>{project.category.replace('-', ' ')}</span>
               </div>
               {project.location && (
                 <>
@@ -107,22 +107,22 @@ export default function ProjectDetail() {
 
           {/* Technical Details */}
           <div className="grid md:grid-cols-2 gap-6 pt-4">
-            {project.camera && (
+            {project.tools && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm font-light tracking-wide uppercase text-muted-foreground">
-                  <Camera className="size-4" />
-                  <span>Camera</span>
+                  <Wrench className="size-4" />
+                  <span>Tools Used</span>
                 </div>
-                <p className="font-light text-foreground">{project.camera}</p>
+                <p className="font-light text-foreground">{project.tools}</p>
               </div>
             )}
-            {project.client && (
+            {project.platform && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm font-light tracking-wide uppercase text-muted-foreground">
-                  <User className="size-4" />
-                  <span>Client</span>
+                  <Globe className="size-4" />
+                  <span>Platform</span>
                 </div>
-                <p className="font-light text-foreground">{project.client}</p>
+                <p className="font-light text-foreground">{project.platform}</p>
               </div>
             )}
           </div>

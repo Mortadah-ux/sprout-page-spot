@@ -1,41 +1,42 @@
-import type { PhotographerInfo } from '@/types';
+import type { AnalystInfo } from '@/types';
 
-export const photographerInfo: PhotographerInfo = {
-  name: 'Sarah Mitchell',
-  tagline: 'Editorial & Commercial Photographer',
-  heroIntroduction: 'Creating visual narratives that capture authentic moments and timeless stories.',
-  biography: `Sarah Mitchell is an award-winning photographer specializing in editorial and commercial work, with recognition including the International Photography Awards Editorial Photographer of the Year 2023 and PDN Photo Annual Winner 2022. With over a decade of experience, her work has been featured in numerous international publications and exhibitions, collaborating with clients such as Vogue, The New York Times, National Geographic, Adobe, Apple, Nike, and Architectural Digest.
+export const photographerInfo: AnalystInfo = {
+  name: 'Alex Chen',
+  tagline: 'Entry-Level SOC Analyst | Cybersecurity Enthusiast',
+  heroIntroduction: 'Passionate about defending organizations from cyber threats through proactive monitoring, threat detection, and incident response.',
+  biography: `I'm an aspiring SOC Analyst with a strong foundation in network security, threat detection, and incident response. Currently pursuing my CompTIA Security+ certification while actively building hands-on experience through home labs and platforms like TryHackMe and HackTheBox.
 
-Based in New York with an MFA in Photography from the School of Visual Arts, Sarah brings a unique perspective to every project, combining technical excellence with artistic vision. Her approach to photography is deeply rooted in storytelling, believing that every image should convey emotion and meaning beyond its visual appeal.`,
-  approach: `My photography is guided by three principles: authenticity, composition, and light. I believe the best images emerge when subjects feel comfortable and genuine, when composition guides the viewer's eye naturally, and when light reveals the essence of the moment.
+My journey into cybersecurity began with a fascination for understanding how systems work—and how they can be protected. I've developed skills in SIEM tools, log analysis, and malware detection through dedicated self-study and practical projects. I'm particularly interested in threat hunting and security automation.
 
-Whether working on editorial assignments or commercial projects, I strive to create images that transcend their immediate purpose and become lasting visual statements.`,
-  awards: [
-    'International Photography Awards - Editorial Photographer of the Year 2023',
-    'PDN Photo Annual - Winner 2022',
-    'Hasselblad Masters Finalist 2021',
-    'Communication Arts Photography Annual 2020'
+I bring a methodical approach to problem-solving and a genuine enthusiasm for continuous learning. I'm eager to contribute to a security team where I can apply my skills while growing as a security professional.`,
+  approach: `My approach to cybersecurity is rooted in three core principles: continuous learning, attention to detail, and systematic thinking. I believe effective security requires understanding both the technical and human elements of threats.
+
+I stay current with the latest threat intelligence, practice regularly in lab environments, and document my findings thoroughly. Whether analyzing logs, investigating alerts, or researching new attack vectors, I maintain a curious and methodical mindset.`,
+  certifications: [
+    'CompTIA Security+ (In Progress)',
+    'Google Cybersecurity Professional Certificate',
+    'TryHackMe - SOC Level 1 Path',
+    'Cisco Networking Basics',
   ],
-  clients: [
-    'Vogue',
-    'The New York Times',
-    'National Geographic',
-    'Adobe',
-    'Apple',
-    'Nike',
-    'Patagonia',
-    'Architectural Digest'
+  skills: [
+    'SIEM (Splunk, ELK Stack)',
+    'Network Analysis (Wireshark, tcpdump)',
+    'Log Analysis & Threat Detection',
+    'Malware Analysis Fundamentals',
+    'Python for Security Automation',
+    'Windows & Linux Administration',
+    'Incident Response Procedures',
+    'OSINT & Threat Intelligence',
   ],
-  education: 'MFA Photography, School of Visual Arts, New York',
-  location: 'New York, NY',
-  email: 'hello@sarahmitchell.com',
-  phone: '+1 (555) 123-4567',
-  availability: 'Currently booking for Q2 2025',
+  education: 'B.S. Information Technology, Western Governors University',
+  location: 'Remote / USA',
+  email: 'alex.chen.cyber@gmail.com',
+  phone: '+1 (555) 987-6543',
+  availability: 'Actively seeking entry-level SOC Analyst positions',
   socialLinks: {
-    instagram: 'https://instagram.com/sarahmitchellphoto',
-    linkedin: 'https://linkedin.com/in/sarahmitchell',
-    behance: 'https://behance.net/sarahmitchell'
+    github: 'https://github.com/alexchensec',
+    linkedin: 'https://linkedin.com/in/alexchensecurity',
+    tryhackme: 'https://tryhackme.com/p/alexchen'
   },
-  // Photo by Joshua Sun on Unsplash
-  portraitImage: 'https://images.unsplash.com/photo-1585279968680-6606ee6ed134?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjI3Njk1NjB8&ixlib=rb-4.1.0&q=80&w=1080'
+  portraitImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800'
 };
