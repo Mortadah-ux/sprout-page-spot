@@ -8,7 +8,6 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { ArrowRight, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Hero3DProfile } from '@/components/Hero3DProfile';
-import { UnicornStudioEmbed } from '@/components/UnicornStudioEmbed';
 
 /**
  * Homepage with immersive hero section and featured projects grid
@@ -173,9 +172,6 @@ export default function Home() {
             </div>
           </ScrollReveal>
         </section>
-
-        {/* UnicornStudio Embed Section */}
-        <UnicornStudioEmbed />
       </div>
     </>
   );
