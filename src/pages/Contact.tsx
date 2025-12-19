@@ -30,7 +30,15 @@ export default function Contact() {
               Get in Touch
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
-              Let's discuss your next project
+              Remix of{' '}
+              <a 
+                href="https://hobby-template.lovable.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground transition-colors"
+              >
+                hobby-template
+              </a>
             </p>
           </motion.div>
         </div>
