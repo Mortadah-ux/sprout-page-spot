@@ -26,10 +26,10 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide">
               Get in Touch
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
+            <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide mt-4">
               Remix of{' '}
               <a 
                 href="https://hobby-template.lovable.app/" 
