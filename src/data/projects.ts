@@ -1,4 +1,5 @@
 import type { Project } from '@/types';
+import mitreAttackImage from '@/assets/mitre-attack-framework.png';
 
 export const projects: Project[] = [
   {
@@ -139,7 +140,7 @@ export const projects: Project[] = [
     category: 'threat-hunting',
     year: '2024',
     slug: 'mitre-attack-study',
-    coverImage: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+    coverImage: mitreAttackImage,
     description: 'Self-study of the MITRE ATT&CK framework for understanding adversary tactics, techniques, and procedures. Using this knowledge to improve threat detection and incident analysis capabilities.',
     tools: 'MITRE ATT&CK Navigator, Splunk Security Essentials',
     platform: 'Self-Study',
@@ -147,8 +148,8 @@ export const projects: Project[] = [
     images: [
       {
         id: '7-1',
-        src: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Security research and documentation',
+        src: mitreAttackImage,
+        alt: 'MITRE ATT&CK Framework - PRE-ATT&CK and ATT&CK Kill Chain',
         aspectRatio: 'landscape'
       }
     ]
