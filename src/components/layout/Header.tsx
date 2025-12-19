@@ -37,7 +37,7 @@ export function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isTransparent
-          ? 'bg-transparent'
+          ? 'bg-black/60 backdrop-blur-sm'
           : 'bg-background/90 backdrop-blur-lg border-b border-border shadow-sm'
       )}
     >
