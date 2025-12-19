@@ -21,6 +21,7 @@ I believe effective security monitoring requires attention to detail, systematic
     'TryHackMe SOC Level 1 Path',
     'TryHackMe Pre-Security Path',
     'TryHackMe 7 Day Streak Badge',
+    'Learning AI Through Visualization (Columbia)',
     'Microsoft SC-200 (Planned)',
   ],
   skills: [
