@@ -139,10 +139,10 @@ export default function Home() {
         <section className="py-24 md:py-32 border-t border-border bg-background/60 backdrop-blur-sm">
           <ScrollReveal>
             <div className="text-center mb-16 space-y-4 px-6">
-              <h2 className="text-4xl md:text-5xl font-semibold tracking-wide text-foreground text-shadow-md">
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-wide text-white text-shadow-md">
                 Featured Projects
               </h2>
-              <p className="text-lg text-foreground/80 font-medium tracking-wide text-shadow-sm">
+              <p className="text-lg text-white font-medium tracking-wide text-shadow-sm">
                 Hands-on security labs and research
               </p>
             </div>
