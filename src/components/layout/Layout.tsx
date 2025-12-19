@@ -17,7 +17,12 @@ export function Layout({ children }: LayoutProps) {
   const isHomepage = location.pathname === '/';
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
+      {/* Background with gradient and grid pattern */}
+      <div className="fixed inset-0 -z-10 bg-background">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--cyber)/0.15),transparent)]" />
+      </div>
       <Header />
       <main 
         id="main-content" 
