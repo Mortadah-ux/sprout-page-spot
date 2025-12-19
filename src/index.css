@@ -235,17 +235,4 @@
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
-  
-  /* Text visibility for animated backgrounds */
-  .text-shadow-sm {
-    text-shadow: 0 1px 2px hsl(0 0% 0% / 0.5);
-  }
-  
-  .text-shadow-md {
-    text-shadow: 0 2px 4px hsl(0 0% 0% / 0.6), 0 0 20px hsl(0 0% 0% / 0.3);
-  }
-  
-  .text-shadow-lg {
-    text-shadow: 0 2px 8px hsl(0 0% 0% / 0.8), 0 0 30px hsl(0 0% 0% / 0.4);
-  }
 }

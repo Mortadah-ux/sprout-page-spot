@@ -9,7 +9,6 @@ import { SkipToContent } from "@/components/ui/SkipToContent";
 import { LoadingFallback } from "@/components/ui/LoadingFallback";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { UnicornStudioBackground } from "@/components/UnicornStudioEmbed";
 import { AnimatePresence } from "framer-motion";
 import { lazy, Suspense } from "react";
 
@@ -87,7 +86,6 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
-          <UnicornStudioBackground />
           <Toaster />
           <Sonner />
           <BrowserRouter>

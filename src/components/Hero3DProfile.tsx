@@ -110,20 +110,17 @@ export function Hero3DProfile() {
           className="relative p-1 rounded-2xl bg-gradient-to-br from-cyber via-cyber/50 to-transparent"
           style={{ transform: 'translateZ(20px)' }}
         >
-          {/* Profile Image - with transparent background blend */}
-          <div className="relative overflow-hidden rounded-xl bg-transparent">
+          {/* Profile Image */}
+          <div className="relative overflow-hidden rounded-xl bg-background">
             <motion.img
               src={profilePhoto}
               alt="Mortadah Jaballah"
-              className="w-full aspect-[3/4] object-cover object-top mix-blend-luminosity opacity-90"
+              className="w-full aspect-[3/4] object-cover object-top"
               animate={{
                 scale: isHovered ? 1.05 : 1,
               }}
               transition={{ duration: 0.4 }}
             />
-            
-            {/* Transparent overlay for see-through effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyber/20 via-transparent to-background/30 mix-blend-overlay" />
             
             {/* Scan line effect */}
             <motion.div
@@ -151,8 +148,8 @@ export function Hero3DProfile() {
               }}
             />
 
-            {/* Bottom gradient overlay - now transparent */}
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/50 to-transparent" />
+            {/* Bottom gradient overlay */}
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
           </div>
         </div>
 

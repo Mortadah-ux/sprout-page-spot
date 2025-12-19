@@ -39,7 +39,7 @@ I believe effective security monitoring requires attention to detail, systematic
   ],
   education: 'Level 4 Extended Diploma in Computing (Cyber Security Technologist) — In Progress',
   location: 'United Kingdom',
-  email: 'jaballah@cyberagent.co.site',
+  email: 'zohramontez@gmail.com',
   phone: '+44 7438 966189',
   availability: 'Actively seeking entry-level L1 SOC Analyst positions',
   socialLinks: {
