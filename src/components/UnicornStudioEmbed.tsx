@@ -10,10 +10,10 @@ declare global {
 }
 
 /**
- * UnicornStudio embed component
- * Loads and initializes the UnicornStudio script for interactive visuals
+ * UnicornStudio background component
+ * Fixed background layer with interactive visuals
  */
-export function UnicornStudioEmbed() {
+export function UnicornStudioBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,12 +44,15 @@ export function UnicornStudioEmbed() {
   }, []);
 
   return (
-    <section className="w-full">
+    <div 
+      ref={containerRef}
+      className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
+      aria-hidden="true"
+    >
       <div 
-        ref={containerRef}
         data-us-project="jwbqQKHOhT4Va7TtAqTS" 
-        style={{ width: '100%', height: '100vh' }}
+        style={{ width: '100%', height: '100%' }}
       />
-    </section>
+    </div>
   );
 }
