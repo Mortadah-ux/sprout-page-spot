@@ -57,14 +57,14 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
                   >
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-cyber/30 bg-cyber/5">
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-cyber/50 bg-background/80 backdrop-blur-sm">
                       <Shield className="size-4 text-cyber" />
-                      <span className="text-sm font-mono text-cyber">SOC ANALYST</span>
+                      <span className="text-sm font-mono text-cyber font-semibold">SOC ANALYST</span>
                     </div>
                   </motion.div>
                   
                   <motion.h1
-                    className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide"
+                    className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-wide text-foreground text-shadow-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -73,7 +73,7 @@ export default function Home() {
                   </motion.h1>
                   
                   <motion.p
-                    className="text-lg md:text-xl font-light tracking-wide text-cyber"
+                    className="text-lg md:text-xl font-semibold tracking-wide text-cyber text-shadow-md"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -82,7 +82,7 @@ export default function Home() {
                   </motion.p>
 
                   <motion.p
-                    className="text-base font-light leading-relaxed text-muted-foreground max-w-lg mx-auto md:mx-0"
+                    className="text-base font-medium leading-relaxed text-foreground/90 max-w-lg mx-auto md:mx-0 text-shadow-sm"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
@@ -136,13 +136,13 @@ export default function Home() {
         </section>
 
         {/* Featured Projects Section */}
-        <section className="py-24 md:py-32 border-t border-border">
+        <section className="py-24 md:py-32 border-t border-border bg-background/60 backdrop-blur-sm">
           <ScrollReveal>
             <div className="text-center mb-16 space-y-4 px-6">
-              <h2 className="text-4xl md:text-5xl font-light tracking-wide">
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-wide text-foreground text-shadow-md">
                 Featured Projects
               </h2>
-              <p className="text-lg text-muted-foreground font-light tracking-wide">
+              <p className="text-lg text-foreground/80 font-medium tracking-wide text-shadow-sm">
                 Hands-on security labs and research
               </p>
             </div>
