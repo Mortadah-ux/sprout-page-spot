@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Instagram, Linkedin } from 'lucide-react';
+import { Linkedin, Github, Shield, Award, BookOpen } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
 
 /**
- * About page with photographer biography and professional information
- * Features split layout with portrait video and comprehensive biography
+ * About page with SOC analyst biography and professional information
+ * Features split layout with portrait and comprehensive biography
  */
 export default function About() {
   return (
@@ -30,7 +30,7 @@ export default function About() {
               About
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
-              Photographer & Visual Storyteller
+              SOC Analyst & Security Enthusiast
             </p>
           </motion.div>
         </div>
@@ -49,36 +49,24 @@ export default function About() {
               transition={{ duration: 0.4 }}
             >
               <div className="aspect-[3/4] relative overflow-hidden rounded-sm bg-muted">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="https://images.pexels.com/videos/3888252/afro-hair-fashion-model-3888252.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
+                <img
+                  src={photographerInfo.portraitImage}
+                  alt={photographerInfo.name}
                   className="absolute inset-0 w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    target.style.display = 'none';
-                  }}
-                >
-                  <source src="https://videos.pexels.com/video-files/3888252/3888252-sd_426_226_25fps.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                {/* Video from Pexels */}
+                />
               </div>
               
               {/* Social Links */}
               <div className="flex items-center gap-4">
-                {photographerInfo.socialLinks.instagram && (
+                {photographerInfo.socialLinks.github && (
                   <a
-                    href={photographerInfo.socialLinks.instagram}
+                    href={photographerInfo.socialLinks.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 border border-border rounded-sm hover:bg-accent transition-colors"
-                    aria-label="Instagram"
+                    aria-label="GitHub"
                   >
-                    <Instagram className="size-5" />
+                    <Github className="size-5" />
                   </a>
                 )}
                 {photographerInfo.socialLinks.linkedin && (
@@ -92,28 +80,15 @@ export default function About() {
                     <Linkedin className="size-5" />
                   </a>
                 )}
-                {photographerInfo.socialLinks.behance && (
+                {photographerInfo.socialLinks.tryhackme && (
                   <a
-                    href={photographerInfo.socialLinks.behance}
+                    href={photographerInfo.socialLinks.tryhackme}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 border border-border rounded-sm hover:bg-accent transition-colors"
-                    aria-label="Behance"
+                    aria-label="TryHackMe"
                   >
-                    <svg
-                      className="size-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M3 8h6a3 3 0 0 1 0 6H3V8z" />
-                      <path d="M3 14h7a3 3 0 0 1 0 6H3v-6z" />
-                      <path d="M14 7h7" />
-                      <path d="M17 8a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
-                    </svg>
+                    <Shield className="size-5" />
                   </a>
                 )}
               </div>
@@ -166,9 +141,66 @@ export default function About() {
                   <span className="text-muted-foreground">Location: </span>
                   <span className="text-foreground">{photographerInfo.location}</span>
                 </div>
+                <div className="text-sm font-light tracking-wide text-cyber">
+                  {photographerInfo.availability}
+                </div>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0.8, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <Award className="size-6 text-cyber" />
+              <h2 className="text-3xl font-light tracking-wide">Certifications</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {photographerInfo.certifications.map((cert, index) => (
+                <div
+                  key={index}
+                  className="p-4 border border-border rounded-sm bg-card hover:bg-accent/50 transition-colors"
+                >
+                  <p className="font-light">{cert}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0.8, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <BookOpen className="size-6 text-cyber" />
+              <h2 className="text-3xl font-light tracking-wide">Technical Skills</h2>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {photographerInfo.skills.map((skill, index) => (
+                <span
+                  key={index}
+                  className="px-4 py-2 border border-border rounded-sm bg-card text-sm font-light hover:bg-accent/50 transition-colors"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
       </div>
