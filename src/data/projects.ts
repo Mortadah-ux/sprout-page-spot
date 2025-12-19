@@ -1,5 +1,6 @@
 import type { Project } from '@/types';
 import mitreAttackImage from '@/assets/mitre-attack-framework.png';
+import splunkDashboard from '@/assets/splunk-dashboard.png';
 
 export const projects: Project[] = [
   {
@@ -8,7 +9,7 @@ export const projects: Project[] = [
     category: 'siem',
     year: '2024',
     slug: 'splunk-soc-home-lab',
-    coverImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+    coverImage: splunkDashboard,
     description: 'Installed and configured Splunk Free Edition to ingest and analyse Windows event logs. Used SPL to investigate security events and build dashboards and alerts. Simulated real SOC monitoring and detection workflows.',
     tools: 'Splunk Free Edition, SPL, Windows Event Logs',
     platform: 'Home Lab',
@@ -16,14 +17,8 @@ export const projects: Project[] = [
     images: [
       {
         id: '1-1',
-        src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Server rack with networking equipment',
-        aspectRatio: 'landscape'
-      },
-      {
-        id: '1-2',
-        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Security monitoring dashboard',
+        src: splunkDashboard,
+        alt: 'Splunk SOC monitoring dashboard with Kubernetes cluster metrics',
         aspectRatio: 'landscape'
       }
     ]
