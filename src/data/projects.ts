@@ -3,13 +3,13 @@ import type { Project } from '@/types';
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'Home SOC Lab',
-    category: 'labs',
+    title: 'Splunk SOC Home Lab',
+    category: 'siem',
     year: '2024',
-    slug: 'home-soc-lab',
+    slug: 'splunk-soc-home-lab',
     coverImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Built a comprehensive home security operations lab using VirtualBox, featuring a complete SIEM stack with Splunk, vulnerable machines for testing, and automated log collection from Windows and Linux endpoints.',
-    tools: 'Splunk, VirtualBox, pfSense, Windows Server, Ubuntu',
+    description: 'Installed and configured Splunk Free Edition to ingest and analyse Windows event logs. Used SPL to investigate security events and build dashboards and alerts. Simulated real SOC monitoring and detection workflows.',
+    tools: 'Splunk Free Edition, SPL, Windows Event Logs',
     platform: 'Home Lab',
     location: 'Personal Project',
     images: [
@@ -21,29 +21,23 @@ export const projects: Project[] = [
       },
       {
         id: '1-2',
-        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Network monitoring dashboard',
-        aspectRatio: 'landscape'
-      },
-      {
-        id: '1-3',
-        src: 'https://images.unsplash.com/photo-1551808525-51a94da548ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Security operations center setup',
+        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+        alt: 'Security monitoring dashboard',
         aspectRatio: 'landscape'
       }
     ]
   },
   {
     id: '2',
-    title: 'Splunk SIEM Detection Rules',
-    category: 'siem',
+    title: 'Windows Event Log Analysis (Sysmon)',
+    category: 'threat-hunting',
     year: '2024',
-    slug: 'splunk-detection-rules',
+    slug: 'windows-sysmon-analysis',
     coverImage: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Developed custom Splunk detection rules and dashboards to identify common attack patterns including brute force attempts, suspicious PowerShell execution, and lateral movement indicators.',
-    tools: 'Splunk, SPL, MITRE ATT&CK Framework',
-    platform: 'Splunk Enterprise',
-    location: 'Home Lab',
+    description: 'Deployed Microsoft Sysmon for enhanced endpoint logging. Analysed process creation, network connections, and file modifications. Practised identifying suspicious behaviour and writing incident summaries.',
+    tools: 'Microsoft Sysmon, Windows Event Viewer, PowerShell',
+    platform: 'Windows Environment',
+    location: 'Personal Project',
     images: [
       {
         id: '2-1',
@@ -53,32 +47,6 @@ export const projects: Project[] = [
       },
       {
         id: '2-2',
-        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Security monitoring interface',
-        aspectRatio: 'landscape'
-      }
-    ]
-  },
-  {
-    id: '3',
-    title: 'Malware Analysis: Emotet Sample',
-    category: 'malware-analysis',
-    year: '2024',
-    slug: 'emotet-malware-analysis',
-    coverImage: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Conducted static and dynamic analysis of an Emotet malware sample in an isolated sandbox environment. Documented IOCs, network behavior, persistence mechanisms, and created detection signatures.',
-    tools: 'REMnux, Ghidra, Wireshark, Process Monitor, VirusTotal',
-    platform: 'Isolated VM Lab',
-    location: 'Personal Research',
-    images: [
-      {
-        id: '3-1',
-        src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Matrix-style code visualization',
-        aspectRatio: 'landscape'
-      },
-      {
-        id: '3-2',
         src: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
         alt: 'Code analysis on screen',
         aspectRatio: 'landscape'
@@ -86,100 +54,114 @@ export const projects: Project[] = [
     ]
   },
   {
-    id: '4',
-    title: 'Network Traffic Analysis',
-    category: 'network-security',
+    id: '3',
+    title: 'Azure Cloud Security Fundamentals',
+    category: 'labs',
     year: '2024',
-    slug: 'network-traffic-analysis',
+    slug: 'azure-cloud-security',
     coverImage: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Analyzed PCAP files from CTF challenges and real-world scenarios to identify malicious traffic patterns, data exfiltration attempts, and command & control communications.',
-    tools: 'Wireshark, Zeek, NetworkMiner, tcpdump',
-    platform: 'TryHackMe / HackTheBox',
-    location: 'CTF Challenges',
+    description: 'Completed hands-on labs focused on identity and access management. Gained practical experience with RBAC (Role-Based Access Control) and Azure monitoring features through Microsoft Learn labs.',
+    tools: 'Azure Portal, Azure AD, RBAC, Azure Monitor',
+    platform: 'Microsoft Learn Labs',
+    location: 'Cloud Environment',
+    images: [
+      {
+        id: '3-1',
+        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+        alt: 'Cloud infrastructure visualization',
+        aspectRatio: 'landscape'
+      }
+    ]
+  },
+  {
+    id: '4',
+    title: 'TryHackMe SOC Training',
+    category: 'labs',
+    year: '2024',
+    slug: 'tryhackme-soc-training',
+    coverImage: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+    description: 'Regular practice on TryHackMe SOC and detection paths, developing practical skills in threat detection, log analysis, and incident response through hands-on challenges and labs.',
+    tools: 'TryHackMe Platform, Various Security Tools',
+    platform: 'TryHackMe',
+    location: 'Online Training',
     images: [
       {
         id: '4-1',
-        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Network visualization',
-        aspectRatio: 'landscape'
-      },
-      {
-        id: '4-2',
-        src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Server infrastructure',
+        src: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+        alt: 'Cybersecurity learning platform',
         aspectRatio: 'landscape'
       }
     ]
   },
   {
     id: '5',
-    title: 'Incident Response Playbook',
-    category: 'incident-response',
-    year: '2023',
-    slug: 'incident-response-playbook',
-    coverImage: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Created comprehensive incident response playbooks for common security incidents including phishing, ransomware, and unauthorized access. Documented containment, eradication, and recovery procedures.',
-    tools: 'Documentation, NIST Framework, MITRE ATT&CK',
-    platform: 'GitHub Documentation',
+    title: 'Network Analysis with Wireshark',
+    category: 'network-security',
+    year: '2024',
+    slug: 'wireshark-network-analysis',
+    coverImage: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+    description: 'Hands-on practice with Wireshark and Nmap for network traffic analysis and vulnerability scanning. Understanding TCP/IP protocols, DNS, firewall configurations, and VPN fundamentals.',
+    tools: 'Wireshark, Nmap, tcpdump',
+    platform: 'Home Lab',
     location: 'Personal Project',
     images: [
       {
         id: '5-1',
-        src: 'https://images.unsplash.com/photo-504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Documentation and planning',
+        src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+        alt: 'Network traffic visualization',
         aspectRatio: 'landscape'
       }
     ]
   },
   {
     id: '6',
-    title: 'TryHackMe SOC Path Completion',
+    title: 'Google Cybersecurity Certificate Labs',
     category: 'labs',
     year: '2024',
-    slug: 'tryhackme-soc-path',
-    coverImage: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Completed the TryHackMe SOC Level 1 learning path, covering log analysis, SIEM fundamentals, threat intelligence, digital forensics, and incident response. Achieved top 5% ranking.',
-    tools: 'TryHackMe Platform, Various Security Tools',
-    platform: 'TryHackMe',
+    slug: 'google-cybersecurity-labs',
+    coverImage: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+    description: 'Completed comprehensive hands-on labs as part of the Google Cybersecurity Professional Certificate, covering security fundamentals, threat detection, and incident response procedures.',
+    tools: 'Linux, SQL, Python, SIEM Tools',
+    platform: 'Google Career Certificates',
     location: 'Online Learning',
     images: [
       {
         id: '6-1',
-        src: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Cybersecurity learning',
+        src: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+        alt: 'Programming and security analysis',
         aspectRatio: 'landscape'
       }
     ]
   },
   {
     id: '7',
-    title: 'Threat Hunting with ELK Stack',
+    title: 'MITRE ATT&CK Framework Study',
     category: 'threat-hunting',
-    year: '2023',
-    slug: 'elk-threat-hunting',
-    coverImage: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Deployed Elasticsearch, Logstash, and Kibana stack for centralized log management. Created threat hunting queries and visualizations to proactively identify suspicious patterns.',
-    tools: 'Elasticsearch, Logstash, Kibana, Beats',
-    platform: 'Docker / Home Lab',
-    location: 'Personal Project',
+    year: '2024',
+    slug: 'mitre-attack-study',
+    coverImage: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+    description: 'Self-study of the MITRE ATT&CK framework for understanding adversary tactics, techniques, and procedures. Using this knowledge to improve threat detection and incident analysis capabilities.',
+    tools: 'MITRE ATT&CK Navigator, Splunk Security Essentials',
+    platform: 'Self-Study',
+    location: 'Professional Development',
     images: [
       {
         id: '7-1',
-        src: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-        alt: 'Programming and analysis',
+        src: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+        alt: 'Security research and documentation',
         aspectRatio: 'landscape'
       }
     ]
   },
   {
     id: '8',
-    title: 'Python Security Automation',
+    title: 'Python Security Scripting',
     category: 'labs',
-    year: '2023',
-    slug: 'python-security-automation',
+    year: '2024',
+    slug: 'python-security-scripting',
     coverImage: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
-    description: 'Developed Python scripts to automate common SOC tasks including IOC extraction, log parsing, API integrations with threat intelligence platforms, and automated reporting.',
-    tools: 'Python, APIs, Regular Expressions, Pandas',
+    description: 'Learning Python scripting for security automation tasks, including log parsing, data analysis, and basic security tool development to enhance SOC efficiency.',
+    tools: 'Python, Regular Expressions, APIs',
     platform: 'GitHub',
     location: 'Personal Project',
     images: [
