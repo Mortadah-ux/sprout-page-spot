@@ -43,5 +43,6 @@ I believe effective security monitoring requires attention to detail, systematic
     linkedin: 'https://www.linkedin.com/in/mortadah-jaballah-7b9a38305/',
     tryhackme: 'https://tryhackme.com'
   },
-  portraitImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800'
+  // Use the imported profile photo path
+  portraitImage: '/src/assets/profile-photo-2.jpg'
 };

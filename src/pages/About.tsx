@@ -3,6 +3,7 @@ import { Linkedin, Github, Shield, Award, BookOpen } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
+import profilePhoto from '@/assets/profile-photo-2.jpg';
 
 /**
  * About page with SOC analyst biography and professional information
@@ -50,9 +51,9 @@ export default function About() {
             >
               <div className="aspect-[3/4] relative overflow-hidden rounded-sm bg-muted">
                 <img
-                  src={photographerInfo.portraitImage}
+                  src={profilePhoto}
                   alt={photographerInfo.name}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                 />
               </div>
               
