@@ -1,6 +1,8 @@
 import type { Project } from '@/types';
 import mitreAttackImage from '@/assets/mitre-attack-framework.png';
 import splunkDashboard from '@/assets/splunk-dashboard.png';
+import splunkIndex from '@/assets/splunk-index.jpg';
+import splunkEmblem from '@/assets/splunk-emblem.png';
 
 export const projects: Project[] = [
   {
@@ -20,6 +22,18 @@ export const projects: Project[] = [
         src: splunkDashboard,
         alt: 'Splunk SOC monitoring dashboard with Kubernetes cluster metrics',
         aspectRatio: 'landscape'
+      },
+      {
+        id: '1-2',
+        src: splunkIndex,
+        alt: 'What Splunk Can Index - data sources overview',
+        aspectRatio: 'landscape'
+      },
+      {
+        id: '1-3',
+        src: splunkEmblem,
+        alt: 'Splunk logo emblem',
+        aspectRatio: 'square'
       }
     ]
   },
