@@ -18,10 +18,9 @@ export function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Background with animated gradient and grid pattern */}
+      {/* Background with animated grid pattern */}
       <div className="fixed inset-0 -z-10 bg-background">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem] animate-grid-move" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--cyber)/0.15),transparent)] animate-glow-pulse" />
       </div>
       <Header />
       <main 
