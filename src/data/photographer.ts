@@ -18,6 +18,9 @@ I believe effective security monitoring requires attention to detail, systematic
     'Microsoft Certified: Azure Fundamentals (AZ-900)',
     'Google Cybersecurity Professional Certificate',
     'Splunk Core Certified Power User',
+    'TryHackMe SOC Level 1 Path',
+    'TryHackMe Pre-Security Path',
+    'TryHackMe 7 Day Streak Badge',
     'Microsoft SC-200 (Planned)',
   ],
   skills: [
@@ -43,6 +46,5 @@ I believe effective security monitoring requires attention to detail, systematic
     linkedin: 'https://www.linkedin.com/in/mortadah-jaballah-7b9a38305/',
     tryhackme: 'https://tryhackme.com'
   },
-  // Use the imported profile photo path
   portraitImage: '/src/assets/profile-photo-2.jpg'
 };
