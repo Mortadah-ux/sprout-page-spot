@@ -19,6 +19,8 @@ I believe effective security monitoring requires attention to detail, systematic
     'Google Cybersecurity Professional Certificate',
     'Splunk Core Certified Power User',
     'Learning AI Through Visualization (Columbia)',
+    'AIG - Shields Up: Cybersecurity Job Simulation (Forage)',
+    'Mastercard - Cybersecurity Job Simulation (Forage)',
     'TryHackMe SOC Level 1',
     'TryHackMe Pre-Security',
     'TryHackMe Jr Penetration Tester',
