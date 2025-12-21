@@ -7,7 +7,7 @@
 */
 
 :root {
-  --background: hsl(220 20% 97%);
+  --background: hsl(0 0% 0%);
   --foreground: hsl(220 20% 10%);
   --card: hsl(0 0% 100%);
   --card-foreground: hsl(220 20% 10%);
