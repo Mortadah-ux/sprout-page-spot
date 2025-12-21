@@ -14,13 +14,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 
 // Validation schema with security best practices
@@ -35,9 +28,6 @@ const contactFormSchema = z.object({
     .trim()
     .email({ message: 'Please enter a valid email address' })
     .max(255, { message: 'Email must be less than 255 characters' }),
-  projectType: z.enum(['editorial', 'commercial', 'personal'], {
-    required_error: 'Please select a project type',
-  }),
   message: z
     .string()
     .trim()
@@ -60,7 +50,6 @@ export function ContactForm() {
     defaultValues: {
       name: '',
       email: '',
-      projectType: undefined,
       message: '',
     },
   });
@@ -78,9 +67,8 @@ export function ContactForm() {
         body: JSON.stringify({
           name: data.name,
           email: data.email,
-          projectType: data.projectType,
           message: data.message,
-          _subject: `New ${data.projectType} inquiry from ${data.name}`,
+          _subject: `New inquiry from ${data.name}`,
         }),
       });
 
@@ -170,38 +158,6 @@ export function ContactForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-xs font-light" />
-            </FormItem>
-          )}
-        />
-
-        {/* Project Type Select */}
-        <FormField
-          control={form.control}
-          name="projectType"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide">
-                Project Type
-              </FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger className="font-light">
-                    <SelectValue placeholder="Select project type" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent className="bg-popover z-50">
-                  <SelectItem value="editorial" className="font-light">
-                    Editorial
-                  </SelectItem>
-                  <SelectItem value="commercial" className="font-light">
-                    Commercial
-                  </SelectItem>
-                  <SelectItem value="personal" className="font-light">
-                    Personal
-                  </SelectItem>
-                </SelectContent>
-              </Select>
               <FormMessage className="text-xs font-light" />
             </FormItem>
           )}
