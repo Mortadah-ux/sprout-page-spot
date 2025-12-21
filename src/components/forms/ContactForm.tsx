@@ -174,7 +174,7 @@ export function ContactForm() {
               </FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell me about your project..."
+                  placeholder=""
                   className="min-h-32 font-light resize-none"
                   {...field}
                 />
