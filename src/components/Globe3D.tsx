@@ -278,7 +278,7 @@ function Globe() {
 
 export function Globe3D() {
   return (
-    <div className="fixed inset-0 -z-5 pointer-events-none">
+    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -5 }}>
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
         style={{ background: 'transparent' }}
