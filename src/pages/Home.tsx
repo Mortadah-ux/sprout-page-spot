@@ -22,10 +22,10 @@ export default function Home() {
       
       <div className="min-h-screen">
         {/* Hero Section - Full viewport with 3D profile */}
-        <section className="relative min-h-screen w-full overflow-hidden bg-background py-20 md:py-0">
-          {/* Background with gradient */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-cyber/5" />
+        <section className="relative min-h-screen w-full overflow-hidden bg-transparent py-20 md:py-0">
+          {/* Background with gradient (kept subtle, but transparent so Layout background shows) */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-cyber/5" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyber/10 via-transparent to-transparent" />
             {/* Animated grid background */}
             <div 
