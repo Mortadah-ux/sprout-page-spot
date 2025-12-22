@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { Globe3D } from '../Globe3D';
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,6 +23,12 @@ export function Layout({ children }: LayoutProps) {
       <div className="fixed inset-0 -z-10 bg-background">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem] animate-grid-move" />
       </div>
+      
+      {/* 3D Globe Background */}
+      <Suspense fallback={null}>
+        <Globe3D />
+      </Suspense>
+      
       <Header />
       <main 
         id="main-content" 
