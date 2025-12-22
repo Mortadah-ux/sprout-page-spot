@@ -8,6 +8,7 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { ArrowRight, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Hero3DProfile } from '@/components/Hero3DProfile';
+import { WorldMapBackground } from '@/components/WorldMapBackground';
 
 /**
  * Homepage with immersive hero section and featured projects grid
@@ -20,12 +21,15 @@ export default function Home() {
     <>
       <SEOHead />
       
+      {/* 3D World Map Background - Global element */}
+      <WorldMapBackground />
+      
       <div className="min-h-screen">
         {/* Hero Section - Full viewport with 3D profile */}
-        <section className="relative min-h-screen w-full overflow-hidden bg-background py-20 md:py-0">
+        <section className="relative min-h-screen w-full overflow-hidden bg-background/80 backdrop-blur-sm py-20 md:py-0">
           {/* Background with gradient */}
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-cyber/5" />
+            <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-cyber/5" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyber/10 via-transparent to-transparent" />
             {/* Animated grid background */}
             <div 
