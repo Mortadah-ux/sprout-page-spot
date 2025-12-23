@@ -5,6 +5,7 @@ import { Footer } from './Footer';
 import { Globe3D } from '../Globe3D';
 import { CyberMapBackground } from '../CyberMapBackground';
 import { AboutBackground } from '../AboutBackground';
+import { ContactBackground } from '../ContactBackground';
 
 interface LayoutProps {
   children: ReactNode;
@@ -20,6 +21,7 @@ export function Layout({ children }: LayoutProps) {
   const isHomepage = location.pathname === '/';
   const isPortfolio = location.pathname === '/portfolio';
   const isAbout = location.pathname === '/about';
+  const isContact = location.pathname === '/contact';
 
   return (
     <div className="min-h-screen flex flex-col relative">
@@ -40,6 +42,9 @@ export function Layout({ children }: LayoutProps) {
 
       {/* 3D About Background - Only on About */}
       {isAbout && <AboutBackground />}
+
+      {/* 3D Contact Background - Only on Contact */}
+      {isContact && <ContactBackground />}
       
       <Header />
       <main 
