@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import earthTexture from '@/assets/earth-texture.jpg';
 import cloudsTexture from '@/assets/earth-clouds.jpg';
 import nightTexture from '@/assets/earth-night.jpg';
+import moonTexture from '@/assets/moon-texture.jpg';
 
 // Custom shader material for day/night with city lights
 const EarthMaterial = shaderMaterial(
@@ -70,6 +71,34 @@ declare global {
       earthMaterial: any;
     }
   }
+}
+
+function Moon() {
+  const moonRef = useRef<THREE.Group>(null);
+  const moonMeshRef = useRef<THREE.Mesh>(null);
+  const moonMap = useTexture(moonTexture);
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    
+    // Moon orbits around Earth
+    if (moonRef.current) {
+      moonRef.current.rotation.y = time * 0.15;
+    }
+    // Moon rotates slowly on its axis
+    if (moonMeshRef.current) {
+      moonMeshRef.current.rotation.y = time * 0.05;
+    }
+  });
+
+  // Moon is about 1/4 Earth's size, orbiting at a scaled distance
+  return (
+    <group ref={moonRef}>
+      <Sphere ref={moonMeshRef} args={[0.5, 32, 32]} position={[5, 0.5, 0]}>
+        <meshStandardMaterial map={moonMap} roughness={0.9} />
+      </Sphere>
+    </group>
+  );
 }
 
 function Earth() {
@@ -176,6 +205,7 @@ export function Globe3D() {
         
         <Suspense fallback={<EarthFallback />}>
           <Earth />
+          <Moon />
         </Suspense>
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
       </Canvas>
