@@ -3,19 +3,25 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, Stars, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import earthTexture from '@/assets/earth-texture.jpg';
+import cloudsTexture from '@/assets/earth-clouds.jpg';
 
 function Earth() {
   const meshRef = useRef<THREE.Mesh>(null);
+  const cloudsRef = useRef<THREE.Mesh>(null);
   const atmosphereRef = useRef<THREE.Mesh>(null);
 
-  // Load Earth texture from local asset
+  // Load Earth and cloud textures from local assets
   const earthMap = useTexture(earthTexture);
+  const cloudsMap = useTexture(cloudsTexture);
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
 
     if (meshRef.current) {
       meshRef.current.rotation.y = time * 0.08;
+    }
+    if (cloudsRef.current) {
+      cloudsRef.current.rotation.y = time * 0.1; // Clouds rotate slightly faster
     }
     if (atmosphereRef.current) {
       atmosphereRef.current.rotation.y = time * 0.05;
@@ -30,6 +36,16 @@ function Earth() {
           map={earthMap}
           roughness={1}
           metalness={0}
+        />
+      </Sphere>
+
+      {/* Cloud layer */}
+      <Sphere ref={cloudsRef} args={[2.02, 64, 64]}>
+        <meshStandardMaterial
+          map={cloudsMap}
+          transparent
+          opacity={0.4}
+          depthWrite={false}
         />
       </Sphere>
 
