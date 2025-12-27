@@ -73,6 +73,89 @@ declare global {
   }
 }
 
+// Nebula background effect
+function Nebula() {
+  const nebulaRef = useRef<THREE.Group>(null);
+
+  // Create nebula clouds with varied colors and positions
+  const nebulaClouds = useMemo(() => {
+    return [
+      // Purple/pink nebula - top right
+      { position: [60, 40, -80], scale: 45, color: '#6b21a8', opacity: 0.08 },
+      { position: [70, 35, -85], scale: 35, color: '#a855f7', opacity: 0.05 },
+      { position: [55, 45, -75], scale: 25, color: '#c084fc', opacity: 0.04 },
+      
+      // Blue nebula - left side
+      { position: [-50, 20, -70], scale: 40, color: '#1e40af', opacity: 0.07 },
+      { position: [-60, 15, -75], scale: 30, color: '#3b82f6', opacity: 0.05 },
+      { position: [-45, 25, -65], scale: 20, color: '#60a5fa', opacity: 0.04 },
+      
+      // Teal/cyan nebula - bottom
+      { position: [10, -40, -90], scale: 50, color: '#0d9488', opacity: 0.06 },
+      { position: [0, -35, -85], scale: 35, color: '#14b8a6', opacity: 0.04 },
+      { position: [20, -45, -80], scale: 25, color: '#2dd4bf', opacity: 0.03 },
+      
+      // Orange/red accent - far right
+      { position: [80, -10, -100], scale: 30, color: '#c2410c', opacity: 0.05 },
+      { position: [85, -5, -95], scale: 20, color: '#f97316', opacity: 0.03 },
+      
+      // Deep space dust - scattered
+      { position: [-30, -20, -120], scale: 60, color: '#1e1b4b', opacity: 0.1 },
+      { position: [40, 60, -110], scale: 55, color: '#312e81', opacity: 0.08 },
+    ];
+  }, []);
+
+  useFrame((state) => {
+    if (nebulaRef.current) {
+      // Very subtle drift animation
+      const time = state.clock.getElapsedTime();
+      nebulaRef.current.rotation.y = Math.sin(time * 0.01) * 0.02;
+      nebulaRef.current.rotation.x = Math.cos(time * 0.008) * 0.01;
+    }
+  });
+
+  return (
+    <group ref={nebulaRef}>
+      {nebulaClouds.map((cloud, index) => (
+        <mesh key={index} position={cloud.position as [number, number, number]}>
+          <sphereGeometry args={[cloud.scale, 16, 16]} />
+          <meshBasicMaterial
+            color={cloud.color}
+            transparent
+            opacity={cloud.opacity}
+            side={THREE.BackSide}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
+        </mesh>
+      ))}
+      
+      {/* Additional wispy nebula layers */}
+      {nebulaClouds.slice(0, 6).map((cloud, index) => (
+        <mesh 
+          key={`wisp-${index}`} 
+          position={[
+            (cloud.position[0] as number) + (Math.random() - 0.5) * 20,
+            (cloud.position[1] as number) + (Math.random() - 0.5) * 20,
+            (cloud.position[2] as number) - 10
+          ]}
+          rotation={[Math.random() * Math.PI, Math.random() * Math.PI, 0]}
+        >
+          <planeGeometry args={[cloud.scale * 1.5, cloud.scale * 0.8]} />
+          <meshBasicMaterial
+            color={cloud.color}
+            transparent
+            opacity={cloud.opacity * 0.5}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 // Shooting star component
 function ShootingStar({ delay }: { delay: number }) {
   const lineRef = useRef<any>(null);
@@ -526,6 +609,7 @@ export function Globe3D() {
           <AsteroidBelt />
         </Suspense>
         <ShootingStars />
+        <Nebula />
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
       </Canvas>
     </div>
