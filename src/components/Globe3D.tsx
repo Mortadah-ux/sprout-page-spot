@@ -1,18 +1,15 @@
 import { useRef, Suspense } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { Sphere, Stars } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Sphere, Stars, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
-import { TextureLoader } from 'three';
+import earthTexture from '@/assets/earth-texture.jpg';
 
 function Earth() {
   const meshRef = useRef<THREE.Mesh>(null);
   const atmosphereRef = useRef<THREE.Mesh>(null);
 
-  // Load Earth texture from NASA/reliable source
-  const earthMap = useLoader(
-    TextureLoader,
-    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg'
-  );
+  // Load Earth texture from local asset
+  const earthMap = useTexture(earthTexture);
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
