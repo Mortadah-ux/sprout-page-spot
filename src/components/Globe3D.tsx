@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Stars } from '@react-three/drei';
 import * as THREE from 'three';
@@ -6,25 +6,19 @@ import { TextureLoader } from 'three';
 
 function Earth() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const cloudsRef = useRef<THREE.Mesh>(null);
   const atmosphereRef = useRef<THREE.Mesh>(null);
 
-  // Load Earth textures from reliable CDN
-  const [earthMap, earthNormalMap, earthSpecularMap, cloudsMap] = useLoader(TextureLoader, [
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-blue-marble.jpg',
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-topology.png',
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-water.png',
-    'https://unpkg.com/three-globe@2.31.1/example/img/earth-clouds.png',
-  ]);
+  // Load Earth texture from NASA/reliable source
+  const earthMap = useLoader(
+    TextureLoader,
+    'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg'
+  );
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
 
     if (meshRef.current) {
       meshRef.current.rotation.y = time * 0.08;
-    }
-    if (cloudsRef.current) {
-      cloudsRef.current.rotation.y = time * 0.1;
     }
     if (atmosphereRef.current) {
       atmosphereRef.current.rotation.y = time * 0.05;
@@ -33,39 +27,27 @@ function Earth() {
 
   return (
     <group>
-      {/* Main Earth sphere with textures */}
+      {/* Main Earth sphere with texture */}
       <Sphere ref={meshRef} args={[2, 64, 64]}>
-        <meshPhongMaterial
+        <meshStandardMaterial
           map={earthMap}
-          normalMap={earthNormalMap}
-          specularMap={earthSpecularMap}
-          specular={new THREE.Color(0x333333)}
-          shininess={5}
-        />
-      </Sphere>
-
-      {/* Cloud layer */}
-      <Sphere ref={cloudsRef} args={[2.02, 64, 64]}>
-        <meshPhongMaterial
-          map={cloudsMap}
-          transparent
-          opacity={0.4}
-          depthWrite={false}
+          roughness={1}
+          metalness={0}
         />
       </Sphere>
 
       {/* Atmosphere glow */}
-      <Sphere ref={atmosphereRef} args={[2.15, 64, 64]}>
+      <Sphere ref={atmosphereRef} args={[2.08, 64, 64]}>
         <meshBasicMaterial
           color="#4da6ff"
           transparent
-          opacity={0.08}
+          opacity={0.1}
           side={THREE.BackSide}
         />
       </Sphere>
 
       {/* Outer atmosphere rim */}
-      <Sphere args={[2.25, 64, 64]}>
+      <Sphere args={[2.15, 64, 64]}>
         <meshBasicMaterial
           color="#87ceeb"
           transparent
@@ -74,6 +56,22 @@ function Earth() {
         />
       </Sphere>
     </group>
+  );
+}
+
+function EarthFallback() {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.08;
+    }
+  });
+
+  return (
+    <Sphere ref={meshRef} args={[2, 64, 64]}>
+      <meshStandardMaterial color="#1a4d7a" roughness={0.8} />
+    </Sphere>
   );
 }
 
@@ -86,11 +84,13 @@ export function Globe3D() {
         gl={{ alpha: true, antialias: true }}
       >
         {/* Lighting for realistic Earth */}
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 3, 5]} intensity={1.5} />
-        <pointLight position={[-10, -10, -10]} intensity={0.3} color="#4da6ff" />
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[5, 3, 5]} intensity={1.2} />
+        <pointLight position={[-10, -10, -10]} intensity={0.2} color="#4da6ff" />
         
-        <Earth />
+        <Suspense fallback={<EarthFallback />}>
+          <Earth />
+        </Suspense>
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
       </Canvas>
     </div>
