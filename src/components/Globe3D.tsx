@@ -157,6 +157,134 @@ function ShootingStars() {
   );
 }
 
+// Sun with lens flare effect
+function Sun() {
+  const sunPosition = new THREE.Vector3(50, 15, 25);
+  const flareRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    // Subtle pulsing effect on the flares
+    if (flareRef.current) {
+      const time = state.clock.getElapsedTime();
+      const pulse = 1 + Math.sin(time * 2) * 0.05;
+      flareRef.current.scale.setScalar(pulse);
+    }
+  });
+
+  return (
+    <group position={sunPosition.toArray()}>
+      {/* Sun core - bright white/yellow */}
+      <Sphere args={[3, 32, 32]}>
+        <meshBasicMaterial color="#fff8e7" />
+      </Sphere>
+      
+      {/* Inner glow */}
+      <Sphere args={[4, 32, 32]}>
+        <meshBasicMaterial
+          color="#ffdd44"
+          transparent
+          opacity={0.6}
+        />
+      </Sphere>
+      
+      {/* Outer glow */}
+      <Sphere args={[6, 32, 32]}>
+        <meshBasicMaterial
+          color="#ffaa22"
+          transparent
+          opacity={0.3}
+        />
+      </Sphere>
+      
+      {/* Corona */}
+      <Sphere args={[10, 32, 32]}>
+        <meshBasicMaterial
+          color="#ff8800"
+          transparent
+          opacity={0.1}
+        />
+      </Sphere>
+
+      {/* Lens flare elements */}
+      <group ref={flareRef}>
+        {/* Main flare streaks */}
+        <mesh rotation={[0, 0, Math.PI / 4]}>
+          <planeGeometry args={[40, 1.5]} />
+          <meshBasicMaterial
+            color="#ffffff"
+            transparent
+            opacity={0.4}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+        <mesh rotation={[0, 0, -Math.PI / 4]}>
+          <planeGeometry args={[40, 1.5]} />
+          <meshBasicMaterial
+            color="#ffffff"
+            transparent
+            opacity={0.4}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+        <mesh rotation={[0, 0, 0]}>
+          <planeGeometry args={[45, 1]} />
+          <meshBasicMaterial
+            color="#ffeecc"
+            transparent
+            opacity={0.3}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+        <mesh rotation={[0, 0, Math.PI / 2]}>
+          <planeGeometry args={[45, 1]} />
+          <meshBasicMaterial
+            color="#ffeecc"
+            transparent
+            opacity={0.3}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+
+        {/* Hexagonal flare artifacts */}
+        <mesh position={[-15, -5, 0]}>
+          <circleGeometry args={[2, 6]} />
+          <meshBasicMaterial
+            color="#44aaff"
+            transparent
+            opacity={0.2}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+        <mesh position={[-25, -8, 0]}>
+          <circleGeometry args={[1.5, 6]} />
+          <meshBasicMaterial
+            color="#ff66aa"
+            transparent
+            opacity={0.15}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+        <mesh position={[-35, -12, 0]}>
+          <circleGeometry args={[3, 32]} />
+          <meshBasicMaterial
+            color="#66ffaa"
+            transparent
+            opacity={0.1}
+            side={THREE.DoubleSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+      </group>
+    </group>
+  );
+}
+
 function Moon() {
   const moonRef = useRef<THREE.Group>(null);
   const moonMeshRef = useRef<THREE.Mesh>(null);
@@ -290,6 +418,7 @@ export function Globe3D() {
         <Suspense fallback={<EarthFallback />}>
           <Earth />
           <Moon />
+          <Sun />
         </Suspense>
         <ShootingStars />
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
