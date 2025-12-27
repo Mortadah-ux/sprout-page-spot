@@ -285,6 +285,110 @@ function Sun() {
   );
 }
 
+// Asteroid belt between Earth and Sun
+function AsteroidBelt() {
+  const beltRef = useRef<THREE.Group>(null);
+  
+  // Generate asteroid data once
+  const asteroids = useMemo(() => {
+    const count = 80;
+    const asteroidData = [];
+    
+    for (let i = 0; i < count; i++) {
+      // Random angle around the belt
+      const angle = (i / count) * Math.PI * 2 + Math.random() * 0.3;
+      // Distance from center (between Earth at ~2 and Sun at ~50)
+      const radius = 12 + Math.random() * 8;
+      // Slight vertical variation
+      const yOffset = (Math.random() - 0.5) * 2;
+      // Random size
+      const size = 0.05 + Math.random() * 0.15;
+      // Random rotation speeds
+      const rotationSpeed = 0.5 + Math.random() * 2;
+      // Random color variation (gray to brown)
+      const colorValue = 0.3 + Math.random() * 0.3;
+      
+      asteroidData.push({
+        id: i,
+        angle,
+        radius,
+        yOffset,
+        size,
+        rotationSpeed,
+        orbitSpeed: 0.02 + Math.random() * 0.03,
+        color: new THREE.Color(colorValue, colorValue * 0.9, colorValue * 0.8),
+        shape: Math.floor(Math.random() * 3), // 0: dodeca, 1: icosa, 2: octa
+      });
+    }
+    
+    return asteroidData;
+  }, []);
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    
+    if (beltRef.current) {
+      // Slowly rotate the entire belt
+      beltRef.current.rotation.y = time * 0.01;
+    }
+  });
+
+  return (
+    <group ref={beltRef} rotation={[0.1, 0, 0.05]}>
+      {asteroids.map((asteroid) => (
+        <Asteroid key={asteroid.id} data={asteroid} />
+      ))}
+    </group>
+  );
+}
+
+function Asteroid({ data }: { data: any }) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  const position = useMemo(() => {
+    const x = Math.cos(data.angle) * data.radius;
+    const z = Math.sin(data.angle) * data.radius;
+    return new THREE.Vector3(x, data.yOffset, z);
+  }, [data]);
+
+  useFrame((state) => {
+    if (meshRef.current) {
+      const time = state.clock.getElapsedTime();
+      // Individual asteroid rotation
+      meshRef.current.rotation.x = time * data.rotationSpeed;
+      meshRef.current.rotation.y = time * data.rotationSpeed * 0.7;
+      
+      // Orbit movement
+      const orbitAngle = data.angle + time * data.orbitSpeed;
+      meshRef.current.position.x = Math.cos(orbitAngle) * data.radius;
+      meshRef.current.position.z = Math.sin(orbitAngle) * data.radius;
+    }
+  });
+
+  // Different geometry based on shape type for variety
+  const geometry = useMemo(() => {
+    switch (data.shape) {
+      case 0:
+        return <dodecahedronGeometry args={[data.size, 0]} />;
+      case 1:
+        return <icosahedronGeometry args={[data.size, 0]} />;
+      default:
+        return <octahedronGeometry args={[data.size, 0]} />;
+    }
+  }, [data.shape, data.size]);
+
+  return (
+    <mesh ref={meshRef} position={position}>
+      {geometry}
+      <meshStandardMaterial
+        color={data.color}
+        roughness={0.9}
+        metalness={0.1}
+      />
+    </mesh>
+  );
+}
+
 function Moon() {
   const moonRef = useRef<THREE.Group>(null);
   const moonMeshRef = useRef<THREE.Mesh>(null);
@@ -419,6 +523,7 @@ export function Globe3D() {
           <Earth />
           <Moon />
           <Sun />
+          <AsteroidBelt />
         </Suspense>
         <ShootingStars />
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
