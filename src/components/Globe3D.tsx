@@ -1,6 +1,6 @@
-import { useRef, Suspense, useMemo } from 'react';
+import { useRef, Suspense, useMemo, useState } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
-import { Sphere, Stars, useTexture, shaderMaterial } from '@react-three/drei';
+import { Sphere, Stars, useTexture, shaderMaterial, Line } from '@react-three/drei';
 import * as THREE from 'three';
 import earthTexture from '@/assets/earth-texture.jpg';
 import cloudsTexture from '@/assets/earth-clouds.jpg';
@@ -71,6 +71,90 @@ declare global {
       earthMaterial: any;
     }
   }
+}
+
+// Shooting star component
+function ShootingStar({ delay }: { delay: number }) {
+  const lineRef = useRef<any>(null);
+  const [active, setActive] = useState(false);
+  const progressRef = useRef(0);
+  const startTimeRef = useRef(0);
+  
+  // Random start and end positions for each shooting star
+  const trajectory = useMemo(() => {
+    const startX = (Math.random() - 0.5) * 80;
+    const startY = 20 + Math.random() * 30;
+    const startZ = -30 - Math.random() * 20;
+    
+    const endX = startX + (Math.random() - 0.5) * 40;
+    const endY = startY - 30 - Math.random() * 20;
+    const endZ = startZ + 10;
+    
+    return {
+      start: new THREE.Vector3(startX, startY, startZ),
+      end: new THREE.Vector3(endX, endY, endZ),
+    };
+  }, []);
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    
+    // Trigger shooting star periodically with delay offset
+    const cycleTime = 8; // seconds between each shooting star cycle
+    const currentCycle = Math.floor((time + delay) / cycleTime);
+    const cycleProgress = ((time + delay) % cycleTime) / cycleTime;
+    
+    if (cycleProgress < 0.15) { // Active for 15% of cycle (about 1.2 seconds)
+      if (!active) {
+        setActive(true);
+        startTimeRef.current = time;
+      }
+      progressRef.current = cycleProgress / 0.15;
+    } else {
+      if (active) setActive(false);
+    }
+  });
+
+  if (!active) return null;
+
+  // Create trail effect with fading points
+  const trailLength = 8;
+  const points: THREE.Vector3[] = [];
+  
+  for (let i = 0; i < trailLength; i++) {
+    const t = Math.max(0, progressRef.current - (i * 0.03));
+    const point = new THREE.Vector3().lerpVectors(trajectory.start, trajectory.end, t);
+    points.push(point);
+  }
+
+  return (
+    <Line
+      ref={lineRef}
+      points={points}
+      color="#ffffff"
+      lineWidth={2}
+      transparent
+      opacity={0.8}
+    />
+  );
+}
+
+function ShootingStars() {
+  // Create multiple shooting stars with different delays
+  const stars = useMemo(() => {
+    return Array.from({ length: 5 }, (_, i) => ({
+      id: i,
+      delay: i * 1.6, // Stagger the delays
+    }));
+  }, []);
+
+  return (
+    <group>
+      {stars.map((star) => (
+        <ShootingStar key={star.id} delay={star.delay} />
+      ))}
+    </group>
+  );
 }
 
 function Moon() {
@@ -207,6 +291,7 @@ export function Globe3D() {
           <Earth />
           <Moon />
         </Suspense>
+        <ShootingStars />
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
       </Canvas>
     </div>
