@@ -97,8 +97,11 @@ function Earth() {
     }
   });
 
+  // Earth's axial tilt is approximately 23.5 degrees
+  const axialTilt = (23.5 * Math.PI) / 180;
+
   return (
-    <group>
+    <group rotation={[axialTilt, 0, 0]}>
       {/* Main Earth sphere with day/night shader */}
       <Sphere ref={meshRef} args={[2, 64, 64]}>
         <earthMaterial
