@@ -1,4 +1,4 @@
-import { useRef, Suspense, useMemo, useState } from 'react';
+import { useRef, Suspense, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { Sphere, Stars, useTexture, shaderMaterial, Line } from '@react-three/drei';
 import * as THREE from 'three';
@@ -590,12 +590,24 @@ function EarthFallback() {
 }
 
 export function Globe3D() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Small delay to ensure canvas is ready, then fade in
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -5 }}>
+    <div 
+      className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} 
+      style={{ zIndex: -5 }}
+    >
       <Canvas
         camera={{ position: [0, 0, 6], fov: 45 }}
         style={{ background: 'transparent' }}
         gl={{ alpha: true, antialias: true }}
+        onCreated={() => setIsLoaded(true)}
       >
         {/* Lighting for realistic Earth */}
         <ambientLight intensity={0.3} />
